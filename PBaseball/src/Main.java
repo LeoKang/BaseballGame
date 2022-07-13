@@ -66,7 +66,7 @@ public class Main {
 						ball++;
 					}
 				}
-			} // else¹® ³¡
+			} // UTF-8 ë³€ê²½
 
 			System.out.printf("strike : %d, ball : %d\n", strike, ball);
 		} while (result);
