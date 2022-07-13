@@ -5,6 +5,7 @@ public class Main {
 		int num1 = (int) (Math.random() * 9 + 1);
 		int num2;
 		int num3;
+		
 		while (true) {
 			num2 = (int) (Math.random() * 9 + 1);
 			if (num2 != num1) {
