@@ -5,7 +5,7 @@ public class Main {
 		int num1 = (int) (Math.random() * 9 + 1);
 		int num2;
 		int num3;
-		
+
 		while (true) {
 			num2 = (int) (Math.random() * 9 + 1);
 			if (num2 != num1) {
@@ -69,7 +69,6 @@ public class Main {
 			} // else¹® ³¡
 
 			System.out.printf("strike : %d, ball : %d\n", strike, ball);
-
 		} while (result);
 		sc.close();
 	}
