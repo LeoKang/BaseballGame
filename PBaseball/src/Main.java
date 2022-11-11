@@ -2,74 +2,59 @@ import java.util.Scanner;
 
 public class Main {
 	public static void main(String[] args) {
-		int num1 = (int) (Math.random() * 9 + 1);
-		int num2;
-		int num3;
-
-		while (true) {
-			num2 = (int) (Math.random() * 9 + 1);
-			if (num2 != num1) {
-				break;
-			}
-		}
-		while (true) {
-			num3 = (int) (Math.random() * 9 + 1);
-			if (num3 != num2 && num3 != num1) {
-				break;
-			}
-		}
-
-		System.out.print(num1 + " " + num2 + " " + num3);
-		System.out.println();
-
 		int[] num = new int[3];
-		num[0] = num1;
-		num[1] = num2;
-		num[2] = num3;
-
-		Scanner sc = new Scanner(System.in);
-		int[] arr = new int[3];
-		int strike = 0, ball = 0;
-		boolean result = true;
+		boolean eq;
 
 		do {
-			strike = 0;
+			eq = false;
+			for (int i = 0; i < num.length; i++) {
+				num[i] = (int) (Math.random() * 10);
+			}
+			if (num[0] == num[1] || num[1] == num[2] || num[2] == num[0]) {
+				eq = true;
+			}
+		} while (eq);
+
+		for (int i = 0; i < num.length; i++) {
+			System.out.print(num[i] + " ");
+		}
+
+		Scanner sc = new Scanner(System.in);
+		int[] inp = new int[3];
+		boolean b = false;
+		int stk, ball;
+
+		do {
+			stk = 0;
 			ball = 0;
-			System.out.println("Input number...");
-			for (int i = 0; i < arr.length; i++) {
-				arr[i] = sc.nextInt();
+			b = true;
+			System.out.print("Input number... ");
+			for (int i = 0; i < inp.length; i++) {
+				inp[i] = sc.nextInt();
 			}
 
-			if (arr[0] == num[0] && arr[1] == num[1] && arr[2] == num[2]) {
-				System.out.println("Game Over!!!");
-				result = false;
-				break;
-			} else {
-				if (arr[0] == num[0]) {
-					strike++;
-				} else {
-					if (arr[0] == num[1] || arr[0] == num[2]) {
-						ball++;
-					}
+			for (int i = 0; i < inp.length; i++) { // strike check
+				if (num[i] == inp[i]) {
+					stk++;
 				}
-				if (arr[1] == num[1]) {
-					strike++;
-				} else {
-					if (arr[1] == num[2] || arr[1] == num[0]) {
-						ball++;
-					}
-				}
-				if (arr[2] == num[2]) {
-					strike++;
-				} else {
-					if (arr[2] == num[1] || arr[2] == num[0]) {
-						ball++;
-					}
-				}
-			} // UTF-8 변경
+			}
 
-			System.out.printf("strike : %d, ball : %d\n", strike, ball);
-		} while (result);
+			for (int i = 0; i < inp.length; i++) { // ball check
+				for (int j = 0; j < inp.length; j++) {
+					if (num[i] == inp[j] && i != j) {
+						ball++;
+					}
+				}
+			}
+			
+			System.out.println("strike : " + stk + ", ball : " + ball);
+			if(stk == 0 && ball == 0) {
+				System.out.println("OUT!");
+			}
+			if(stk == 3) {
+				b = false;
+			}
+		} while (b);
 		sc.close();
 	}
 }
